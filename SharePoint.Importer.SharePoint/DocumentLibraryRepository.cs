@@ -243,37 +243,64 @@ namespace OrbitOne.SharePoint.Importer.SharePoint
             this.EnsureInitialized();
             using (ClientContext clientContext = this.CreateContext())
             {
+
+                List oList = clientContext.Web.Lists.GetByTitle(this.m_settings.DocumentLibrary);
+
+                CamlQuery camlQuery = new CamlQuery();
+                camlQuery.ViewXml = "<View><RowLimit>5000</RowLimit></View>";
+                ListItemCollection collListItem = oList.GetItems(camlQuery);
+
+                clientContext.Load(collListItem,
+                        items => items.Include(
+                            item =>item.FieldValuesAsText));
+
+                clientContext.ExecuteQuery();
                 List<NameSourcePair> nameSourcePairList = new List<NameSourcePair>();
-                List byTitle = clientContext.Web.Lists.GetByTitle(this.m_settings.DocumentLibrary);
-                ListItemCollectionPosition collectionPosition = (ListItemCollectionPosition)null;
-                do
+
+                nameSourcePairList.AddRange((IEnumerable<NameSourcePair>)collListItem.ToList<ListItem>().Select<ListItem, NameSourcePair>((Func<ListItem, NameSourcePair>)(i => new NameSourcePair()
                 {
-                    CamlQuery query_ = new CamlQuery()
-                    {
-                        ViewXml = "<View><RowLimit>5000</RowLimit></View>",
-                        ListItemCollectionPosition = collectionPosition
-                    };
-                    ListItemCollection items = byTitle.GetItems(query_);
-                    clientContext.Load<List>(byTitle, new Expression<Func<List, object>>[0]);
-                    clientContext.Load<ListItemCollection>(items, new Expression<Func<ListItemCollection, object>>[2]
-                    {
-            (Expression<Func<ListItemCollection, object>>) (foo => foo.ListItemCollectionPosition),
-            (Expression<Func<ListItemCollection, object>>) (i => i.Include<ListItem>(new Expression<Func<ListItem, object>>[]
-            {
-              (Expression<Func<ListItem, object>>) (item => item["FileLeafRef"]),
-              (Expression<Func<ListItem, object>>) (item => item["_Source"])
-            }))
-                    });
-                    clientContext.ExecuteQuery();
-                    collectionPosition = items.ListItemCollectionPosition;
-                    nameSourcePairList.AddRange((IEnumerable<NameSourcePair>)items.ToList<ListItem>().Select<ListItem, NameSourcePair>((Func<ListItem, NameSourcePair>)(i => new NameSourcePair()
-                    {
-                        Name = i["FileLeafRef"].ToString(),
-                        Source = i["_Source"] == null ? string.Empty : i["_Source"].ToString()
-                    })).ToList<NameSourcePair>());
-                }
-                while (collectionPosition != null);
-                return (IList<NameSourcePair>)nameSourcePairList;
+                    Name = i.FieldValuesAsText["FileLeafRef"],
+                    Source = i.FieldValuesAsText["_Source"] == null ? string.Empty : i.FieldValuesAsText["_Source"]
+                })).ToList<NameSourcePair>());
+
+                return nameSourcePairList;
+
+            //    foreach (ListItem oListItem in collListItem)
+            //    {
+            //        Console.WriteLine("Title: {0} \nBody: {1}", oListItem.FieldValuesAsText["FileLeafRef"], oListItem.FieldValuesAsText["_Source"]);
+            //    }
+
+
+            //    List byTitle = clientContext.Web.Lists.GetByTitle(this.m_settings.DocumentLibrary);
+            //    ListItemCollectionPosition collectionPosition = (ListItemCollectionPosition)null;
+            //    do
+            //    {
+            //        CamlQuery query_ = new CamlQuery()
+            //        {
+            //            ViewXml = "<View><RowLimit>5000</RowLimit></View>",
+            //            ListItemCollectionPosition = collectionPosition
+            //        };
+            //        ListItemCollection items = byTitle.GetItems(query_);
+            //        clientContext.Load<List>(byTitle, new Expression<Func<List, object>>[0]);
+            //        clientContext.Load<ListItemCollection>(items, new Expression<Func<ListItemCollection, object>>[2]
+            //        {
+            //(Expression<Func<ListItemCollection, object>>) (foo => foo.ListItemCollectionPosition),
+            //(Expression<Func<ListItemCollection, object>>) (i => i.Include<ListItem>(new Expression<Func<ListItem, object>>[]
+            //{
+            //  (Expression<Func<ListItem, object>>) (item => item["FileLeafRef"]),
+            //  (Expression<Func<ListItem, object>>) (item => item["_Source"])
+            //}))
+            //        });
+            //        clientContext.ExecuteQuery();
+            //        collectionPosition = items.ListItemCollectionPosition;
+            //        nameSourcePairList.AddRange((IEnumerable<NameSourcePair>)items.ToList<ListItem>().Select<ListItem, NameSourcePair>((Func<ListItem, NameSourcePair>)(i => new NameSourcePair()
+            //        {
+            //            Name = i["FileLeafRef"].ToString(),
+            //            Source = i["_Source"] == null ? string.Empty : i["_Source"].ToString()
+            //        })).ToList<NameSourcePair>());
+            //    }
+            //    while (collectionPosition != null);
+            //    return (IList<NameSourcePair>)nameSourcePairList;
             }
         }
     }
