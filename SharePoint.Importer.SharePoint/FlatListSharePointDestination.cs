@@ -46,12 +46,14 @@ namespace OrbitOne.SharePoint.Importer.SharePoint
 
         private void ImportFile(ImportFile orig, ImportFile file)
         {
-            if (this.FileExists(file))
+            if (this.FileExists(file) && !ImportSettings.OverwriteFile)
             {
+                System.Diagnostics.Debug.WriteLine("File already exists and is skipped: " + file.OriginalFullName);
                 FlatListSharePointDestination.Log.Warn((object)("File already exists and is skipped: " + file.OriginalFullName));
             }
             else
             {
+                System.Diagnostics.Debug.WriteLine("START Processing " + file.OriginalFullName);
                 FlatListSharePointDestination.Log.Info((object)("START Processing " + file.OriginalFullName));
                 CreateFileResult file1 = this.DocumentLibraryRepository.CreateFile(file);
                 this.ExistingFilenames.Add(new NameSourcePair()
@@ -59,6 +61,7 @@ namespace OrbitOne.SharePoint.Importer.SharePoint
                     Name = file.Name,
                     Source = file.OriginalFullName
                 });
+                System.Diagnostics.Debug.WriteLine("End Processing " + file.OriginalFullName);
                 if (!file1.Succeeded)
                     return;
                 this.RaiseItemProcessed((ImportItem)orig, file1.Location);

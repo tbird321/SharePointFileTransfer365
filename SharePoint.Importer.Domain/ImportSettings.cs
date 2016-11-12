@@ -10,6 +10,7 @@ namespace OrbitOne.SharePoint.Importer.Domain
 {
     public class ImportSettings
     {
+        public bool OverwriteFile { get; set; }
         public bool LoggingEnabled { get; set; }
 
         public string SourceFolder { get; set; }

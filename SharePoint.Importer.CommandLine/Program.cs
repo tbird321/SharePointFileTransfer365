@@ -119,6 +119,7 @@ namespace OrbitOne.SharePoint.Importer.CommandLine
                 importSettings.Username = valueToPopulate.Username;
                 importSettings.Password = valueToPopulate.Password;
                 importSettings.Domain = valueToPopulate.Domain;
+                importSettings.OverwriteFile = valueToPopulate.OverwriteFile;
                 importSettings.Mode = !valueToPopulate.WhatIf ? (!valueToPopulate.Analyse ? ImportMode.Execute : ImportMode.Analyse) : ImportMode.WhatIf;
                 importSettings.AuthenticationMode = string.IsNullOrEmpty(valueToPopulate.authenticationmode) || !Enum.IsDefined(typeof(AuthenticationMode), (object)valueToPopulate.authenticationmode) ? AuthenticationMode.Windows : (AuthenticationMode)Enum.Parse(typeof(AuthenticationMode), valueToPopulate.authenticationmode, true);
             }

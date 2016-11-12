@@ -19,6 +19,7 @@ namespace OrbitOne.SharePoint.Importer.CommandLine
         [Required]
         public string documentlibrary { get; set; }
 
+        public bool OverwriteFile { get; set; }
         public string Archive { get; set; }
 
         public bool CreateFolders { get; set; }

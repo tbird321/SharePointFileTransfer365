@@ -12,6 +12,7 @@ namespace OrbitOne.SharePoint.Importer.SharePoint
 {
     public abstract class SharePointImportDestination : IImportDestination
     {
+        protected ImportSettings ImportSettings { get; }
         protected IDocumentLibraryRepository DocumentLibraryRepository;
         private IList<NameSourcePair> m_ExistingFilenames;
 
@@ -30,6 +31,7 @@ namespace OrbitOne.SharePoint.Importer.SharePoint
         public SharePointImportDestination(ImportSettings settings)
         {
             this.DocumentLibraryRepository = (IDocumentLibraryRepository)new OrbitOne.SharePoint.Importer.SharePoint.DocumentLibraryRepository(settings);
+            ImportSettings = settings;
         }
 
         public abstract void Import(ImportItem importItem);
