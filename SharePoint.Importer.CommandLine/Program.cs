@@ -1,19 +1,10 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SharepointFileTransfer.SharePoint.Importer.CommandLine.Program
-// Assembly: SharepointFileTransfer.SharePoint.Importer, Version=1.2.2.0, Culture=neutral, PublicKeyToken=null
-// MVID: D1FFDC9B-F8CC-4FBB-A43C-FDBC02BB1B73
-// Assembly location: C:\Sample1\SharepointFileTransfer.SharePoint.Importer.exe
-
-using log4net;
+﻿using log4net;
 using log4net.Config;
-using Microsoft.SharePoint.Client;
 using SharepointFileTransfer.SharePoint.Importer.CommandLineParsing;
 using SharepointFileTransfer.SharePoint.Importer.Domain;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net;
-using System.Security;
 
 namespace SharepointFileTransfer.SharePoint.Importer.CommandLine
 {
