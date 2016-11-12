@@ -156,6 +156,7 @@
     <Compile Include="SharePoint.Importer.SharePoint\FlatListSharePointDestination.cs" />
     <Compile Include="SharePoint.Importer.SharePoint\IDocumentLibraryRepository.cs" />
     <Compile Include="SharePoint.Importer.SharePoint\ImportDestinationFactory.cs" />
+    <Compile Include="SharePoint.Importer.SharePoint\LargeFileUploadService.cs" />
     <Compile Include="SharePoint.Importer.SharePoint\NameSourcePair.cs" />
     <Compile Include="SharePoint.Importer.SharePoint\SharePointImportDestination.cs" />
     <Compile Include="SharePoint.Importer.SharePoint\SharePointUserMapper.cs" />

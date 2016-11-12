@@ -19,19 +19,20 @@ namespace SharepointFileTransfer.SharePoint.Importer.SharePoint
         private IDictionary<string, string> m_availableFields;
         private readonly Func<ClientContext> CreateContext;
         private bool m_Initialized;
-
+        LargeFileUploadService m_uploadFileService;
         public string ApplicationUrl { get; set; }
 
         public long MaximumFileSize
         {
             get
             {
-                return 209715200;
+                return long.MaxValue;
             }
         }
 
         public DocumentLibraryRepository(ImportSettings settings)
         {
+            m_uploadFileService = new LargeFileUploadService();
             DocumentLibraryRepository libraryRepository = this;
             this.m_settings = settings;
             this.CreateContext = (Func<ClientContext>)(() =>
@@ -90,7 +91,7 @@ namespace SharepointFileTransfer.SharePoint.Importer.SharePoint
                 {
                     this.CreateFile(file, context);
                     flag1 = true;
-                    this.ApplyMetaData(file, context);
+                    //this.ApplyMetaData(file, context);
                 }
                 catch (Exception ex)
                 {
@@ -134,15 +135,16 @@ namespace SharepointFileTransfer.SharePoint.Importer.SharePoint
 
         private void CreateFile(ImportFile importFile, ClientContext context)
         {
-            string serverRelativeUrl = this.m_serverRelativeListUrl + importFile.ServerRelativePath;
-            using (Stream stream = importFile.OpenRead())
-            {
-                if (this.m_settings.Mode != ImportMode.Execute)
-                    return;
-                DocumentLibraryRepository.log.Info((object)("Saving file to SharePoint: " + this.ApplicationUrl + serverRelativeUrl));
-                Microsoft.SharePoint.Client.File.SaveBinaryDirect(context, serverRelativeUrl, stream, false);
-                DocumentLibraryRepository.log.Info((object)"Succeeded");
-            }
+            var result=m_uploadFileService.UploadFileSlicePerSlice(context, m_settings.DocumentLibrary, importFile.OriginalFullName);
+            //string serverRelativeUrl = this.m_serverRelativeListUrl + importFile.ServerRelativePath;
+            //using (Stream stream = importFile.OpenRead())
+            //{
+            //    if (this.m_settings.Mode != ImportMode.Execute)
+            //        return;
+            //    DocumentLibraryRepository.log.Info((object)("Saving file to SharePoint: " + this.ApplicationUrl + serverRelativeUrl));
+            //    Microsoft.SharePoint.Client.File.SaveBinaryDirect(context, serverRelativeUrl, stream, m_settings.OverwriteFile);
+            //    DocumentLibraryRepository.log.Info((object)"Succeeded");
+            //}
         }
 
         private void MapMembers(ImportFile importFile, ListItem listItem)
