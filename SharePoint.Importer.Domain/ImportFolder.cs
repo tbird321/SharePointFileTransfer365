@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
-// Type: OrbitOne.SharePoint.Importer.Domain.ImportFolder
-// Assembly: OrbitOne.SharePoint.Importer, Version=1.2.2.0, Culture=neutral, PublicKeyToken=null
+// Type: SharepointFileTransfer.SharePoint.Importer.Domain.ImportFolder
+// Assembly: SharepointFileTransfer.SharePoint.Importer, Version=1.2.2.0, Culture=neutral, PublicKeyToken=null
 // MVID: D1FFDC9B-F8CC-4FBB-A43C-FDBC02BB1B73
-// Assembly location: C:\Sample1\OrbitOne.SharePoint.Importer.exe
+// Assembly location: C:\Sample1\SharepointFileTransfer.SharePoint.Importer.exe
 
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
-namespace OrbitOne.SharePoint.Importer.Domain
+namespace SharepointFileTransfer.SharePoint.Importer.Domain
 {
     [DebuggerDisplay("{OriginalFullName}")]
     public class ImportFolder : ImportItem, IImportFolder

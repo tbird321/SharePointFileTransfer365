@@ -1,21 +1,21 @@
 ﻿// Decompiled with JetBrains decompiler
-// Type: OrbitOne.SharePoint.Importer.CommandLine.Program
-// Assembly: OrbitOne.SharePoint.Importer, Version=1.2.2.0, Culture=neutral, PublicKeyToken=null
+// Type: SharepointFileTransfer.SharePoint.Importer.CommandLine.Program
+// Assembly: SharepointFileTransfer.SharePoint.Importer, Version=1.2.2.0, Culture=neutral, PublicKeyToken=null
 // MVID: D1FFDC9B-F8CC-4FBB-A43C-FDBC02BB1B73
-// Assembly location: C:\Sample1\OrbitOne.SharePoint.Importer.exe
+// Assembly location: C:\Sample1\SharepointFileTransfer.SharePoint.Importer.exe
 
 using log4net;
 using log4net.Config;
 using Microsoft.SharePoint.Client;
-using OrbitOne.SharePoint.Importer.CommandLineParsing;
-using OrbitOne.SharePoint.Importer.Domain;
+using SharepointFileTransfer.SharePoint.Importer.CommandLineParsing;
+using SharepointFileTransfer.SharePoint.Importer.Domain;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Security;
 
-namespace OrbitOne.SharePoint.Importer.CommandLine
+namespace SharepointFileTransfer.SharePoint.Importer.CommandLine
 {
     internal class Program
     {

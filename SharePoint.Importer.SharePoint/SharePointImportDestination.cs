@@ -1,14 +1,14 @@
 ﻿// Decompiled with JetBrains decompiler
-// Type: OrbitOne.SharePoint.Importer.SharePoint.SharePointImportDestination
-// Assembly: OrbitOne.SharePoint.Importer, Version=1.2.2.0, Culture=neutral, PublicKeyToken=null
+// Type: SharepointFileTransfer.SharePoint.Importer.SharePoint.SharePointImportDestination
+// Assembly: SharepointFileTransfer.SharePoint.Importer, Version=1.2.2.0, Culture=neutral, PublicKeyToken=null
 // MVID: D1FFDC9B-F8CC-4FBB-A43C-FDBC02BB1B73
-// Assembly location: C:\Sample1\OrbitOne.SharePoint.Importer.exe
+// Assembly location: C:\Sample1\SharepointFileTransfer.SharePoint.Importer.exe
 
-using OrbitOne.SharePoint.Importer.Domain;
+using SharepointFileTransfer.SharePoint.Importer.Domain;
 using System;
 using System.Collections.Generic;
 
-namespace OrbitOne.SharePoint.Importer.SharePoint
+namespace SharepointFileTransfer.SharePoint.Importer.SharePoint
 {
     public abstract class SharePointImportDestination : IImportDestination
     {
@@ -30,7 +30,7 @@ namespace OrbitOne.SharePoint.Importer.SharePoint
 
         public SharePointImportDestination(ImportSettings settings)
         {
-            this.DocumentLibraryRepository = (IDocumentLibraryRepository)new OrbitOne.SharePoint.Importer.SharePoint.DocumentLibraryRepository(settings);
+            this.DocumentLibraryRepository = (IDocumentLibraryRepository)new SharepointFileTransfer.SharePoint.Importer.SharePoint.DocumentLibraryRepository(settings);
             ImportSettings = settings;
         }
 

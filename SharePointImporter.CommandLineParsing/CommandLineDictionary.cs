@@ -1,15 +1,15 @@
 ﻿// Decompiled with JetBrains decompiler
-// Type: OrbitOne.SharePoint.Importer.CommandLineParsing.CommandLineDictionary
-// Assembly: OrbitOne.SharePoint.Importer, Version=1.2.2.0, Culture=neutral, PublicKeyToken=null
+// Type: SharepointFileTransfer.SharePoint.Importer.CommandLineParsing.CommandLineDictionary
+// Assembly: SharepointFileTransfer.SharePoint.Importer, Version=1.2.2.0, Culture=neutral, PublicKeyToken=null
 // MVID: D1FFDC9B-F8CC-4FBB-A43C-FDBC02BB1B73
-// Assembly location: C:\Sample1\OrbitOne.SharePoint.Importer.exe
+// Assembly location: C:\Sample1\SharepointFileTransfer.SharePoint.Importer.exe
 
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Runtime.Serialization;
 
-namespace OrbitOne.SharePoint.Importer.CommandLineParsing
+namespace SharepointFileTransfer.SharePoint.Importer.CommandLineParsing
 {
     [Serializable]
     public class CommandLineDictionary : Dictionary<string, string>

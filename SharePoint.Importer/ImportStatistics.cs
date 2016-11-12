@@ -1,15 +1,15 @@
 ﻿// Decompiled with JetBrains decompiler
-// Type: OrbitOne.SharePoint.Importer.ImportStatistics
-// Assembly: OrbitOne.SharePoint.Importer, Version=1.2.2.0, Culture=neutral, PublicKeyToken=null
+// Type: SharepointFileTransfer.SharePoint.Importer.ImportStatistics
+// Assembly: SharepointFileTransfer.SharePoint.Importer, Version=1.2.2.0, Culture=neutral, PublicKeyToken=null
 // MVID: D1FFDC9B-F8CC-4FBB-A43C-FDBC02BB1B73
-// Assembly location: C:\Sample1\OrbitOne.SharePoint.Importer.exe
+// Assembly location: C:\Sample1\SharepointFileTransfer.SharePoint.Importer.exe
 
-using OrbitOne.SharePoint.Importer.Domain;
+using SharepointFileTransfer.SharePoint.Importer.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace OrbitOne.SharePoint.Importer
+namespace SharepointFileTransfer.SharePoint.Importer
 {
     public class ImportStatistics
     {
