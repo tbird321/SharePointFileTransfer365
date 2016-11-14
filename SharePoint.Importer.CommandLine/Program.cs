@@ -29,7 +29,8 @@ namespace SharepointFileTransfer.SharePoint.Importer.CommandLine
         private static void PrintUsage()
         {
             Console.WriteLine("Required Arguments:");
-            Console.WriteLine();
+            Console.WriteLine();           
+            Console.WriteLine("-file\t\t The file that you want to import.");
             Console.WriteLine("-folder\t\t The directory that you want to import.");
             Console.WriteLine("-site\t\t The url of the site you cwant to import to.");
             Console.WriteLine("-documentlibrary\t The name of the document library you want to import to");
@@ -40,6 +41,7 @@ namespace SharepointFileTransfer.SharePoint.Importer.CommandLine
             Console.WriteLine("-ImportHiddenFiles\t If present, hidden files will be imported.\n\t\t\t By default the are skipped.");
             Console.WriteLine("-CreateEmptyFolders\t If present, empty folders will be created in the\n\t\t\t target document library. By default they are skipped.");
             Console.WriteLine("-MovedFolder\t\t If present, all imported files will be moved to the\n\t\t\t specified folder");
+            Console.WriteLine("-OverwriteFile\t\t If present files will be overwritten");
         }
 
         private static void InitLogging()
@@ -110,6 +112,7 @@ namespace SharepointFileTransfer.SharePoint.Importer.CommandLine
                 importSettings.Username = valueToPopulate.Username;
                 importSettings.Password = valueToPopulate.Password;
                 importSettings.Domain = valueToPopulate.Domain;
+                importSettings.file = valueToPopulate.file;
                 importSettings.OverwriteFile = valueToPopulate.OverwriteFile;
                 importSettings.Mode = !valueToPopulate.WhatIf ? (!valueToPopulate.Analyse ? ImportMode.Execute : ImportMode.Analyse) : ImportMode.WhatIf;
                 importSettings.AuthenticationMode = string.IsNullOrEmpty(valueToPopulate.authenticationmode) || !Enum.IsDefined(typeof(AuthenticationMode), (object)valueToPopulate.authenticationmode) ? AuthenticationMode.Windows : (AuthenticationMode)Enum.Parse(typeof(AuthenticationMode), valueToPopulate.authenticationmode, true);

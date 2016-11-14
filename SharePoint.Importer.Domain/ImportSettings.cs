@@ -48,5 +48,6 @@ namespace SharepointFileTransfer.SharePoint.Importer.Domain
         public string Username { get; set; }
 
         public string Domain { get; set; }
+        public string file { get; set; }
     }
 }

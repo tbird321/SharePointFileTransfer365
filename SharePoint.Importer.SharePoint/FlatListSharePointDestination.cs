@@ -34,7 +34,17 @@ namespace SharepointFileTransfer.SharePoint.Importer.SharePoint
                 ImportFile file2 = new ImportFile(file1);
                 file2.Name = this.NameResolver.ResolveName(file1);
                 importFolder.Add((ImportItem)file2);
-                this.ImportFile(file1, file2);
+                if (string.IsNullOrEmpty(ImportSettings.file))
+                {
+                    this.ImportFile(file1, file2);
+                }
+                else
+                {
+                    if (file1.Name.Equals(ImportSettings.file,StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        this.ImportFile(file1, file2);
+                    }
+                }
             }
         }
 

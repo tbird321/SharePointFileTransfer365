@@ -35,5 +35,6 @@ namespace SharepointFileTransfer.SharePoint.Importer.CommandLine
         public bool nolog { get; set; }
 
         public string authenticationmode { get; set; }
+        public string file { get; set; }
     }
 }
